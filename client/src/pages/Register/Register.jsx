@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,11 +9,16 @@ import { registerRoute } from '../../utils/APIRoutes';
 
 function Register() {
 
+  useEffect(()=>{
+    if(localStorage.getItem('chat-app-user')){
+    navigate('/')
+    }},[])
+
   const navigate = useNavigate()
 
   const toastOptions = {
     position:"bottom-right",
-    autoClose: 5000,
+    autoClose:5000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
