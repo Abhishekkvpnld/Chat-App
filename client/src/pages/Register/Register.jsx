@@ -8,13 +8,12 @@ import icon from '../../assets/logo.svg';
 import { registerRoute } from '../../utils/APIRoutes';
 
 function Register() {
+  const navigate = useNavigate()
 
   useEffect(()=>{
     if(localStorage.getItem('chat-app-user')){
     navigate('/')
     }},[])
-
-  const navigate = useNavigate()
 
   const toastOptions = {
     position:"bottom-right",
