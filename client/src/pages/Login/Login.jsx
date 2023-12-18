@@ -15,7 +15,7 @@ function Login() {
 if(localStorage.getItem('chat-app-user')){
 navigate('/')
 }
-  },[])
+  },[navigate])
 
   const toastOptions = {
     position:"bottom-right",

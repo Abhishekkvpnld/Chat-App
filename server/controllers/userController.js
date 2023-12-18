@@ -1,3 +1,4 @@
+const { json } = require('stream/consumers');
 const User = require('../model/userModel');
 const bcrypt = require('bcrypt')
 
@@ -45,3 +46,33 @@ module.exports.login = async (req, res, next) => {
         next(ex);
     }
 }
+
+module.exports.setAvatar = async(req,res,next)=>{
+try{
+const userId = req.params.id;
+const avatarImage = req.body.image;
+const userData = await User.findOneAndUpdate({ _id: userId }, {
+    $set: {
+        isAvatarImageSet: true,
+        avatarImage,
+    },
+});
+return res.json({
+    isSet:userData.isAvatarImageSet,
+    image:userData.avatarImage
+})
+}catch(ex){
+    next(ex)
+} 
+}
+
+module.exports.getAllUser = async (req, res, next) => {
+    try {
+        const users = await User.find({ _id: { $ne: req.params.id} })
+            .select(["email", "username", "avatarImage", "_id"]);
+console.log(users)
+        return res.json(users);
+    } catch (ex) {
+        next(ex)
+    }
+};

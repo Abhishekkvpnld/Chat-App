@@ -5,7 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import loader from '../../assets/loader.gif';
 import styled from 'styled-components';
 import axios from 'axios';
-import icon from '../../assets/logo.svg';
 import { setAvatarRoute } from '../../utils/APIRoutes';
 import { Buffer } from 'buffer';
 
@@ -25,10 +24,34 @@ function SetAvatar() {
     progress: 1,
     theme: 'light',
   };
+  useEffect(()=>{
+if( !localStorage.getItem("chat-app-user")){
+  navigate('/login')
+}
+  },[navigate])
 
-  const setProfilePicture = () => {
+  const setProfilePicture = async () => {
 
+      if (selectedAvatar === undefined) {
+        toast.error('Please select an avatar', toastOptions);
+        console.log('please select an avatar')
+      } else {
+        const user = JSON.parse(localStorage.getItem('chat-app-user'));
+        console.log('got user')
+        const { data } = await axios.post(`${setAvatarRoute}/${user._id}`,{image:avatars[selectedAvatar]});
+        
+        if (data.isSet) {
+          user.isAvatarImageSet = true;
+          user.avatarImage = data.image;
+          localStorage.setItem("chat-app-user", JSON.stringify(user));
+          navigate('/');
+        } else {
+          toast.error('An error occurred. Please try again', toastOptions);
+        }
+      }
+  
   };
+  
 
   useEffect(() => {
     const fetchAvatars = async () => {
@@ -49,7 +72,14 @@ function SetAvatar() {
 
   return (
     <div>
-      <Container>
+
+{
+  isLoading ? <Container>
+    <img src={loader} alt="loader"  className='loader'/>
+  </Container> : (
+    
+    
+    <Container>
         <div className='title-container'>
           <h1>Pick an avatar as your profile picture</h1>
         </div>
@@ -60,12 +90,13 @@ function SetAvatar() {
         src={`data:image/svg+xml;base64,${avatar}`}
         alt={`Avatar ${index}`}
         onClick={() => setSelectedAvatar(index)}
-      />
+        />
     </div>
   ))}
 </div>
 <button className='submit-btn' onClick={setProfilePicture}>Set as profile picture</button>
       </Container>
+)}
       <ToastContainer />
     </div>
   );
