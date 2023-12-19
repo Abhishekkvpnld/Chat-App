@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-function Contacts({ contacts, currentUser }) {
+function Contacts({ contacts, currentUser,changeChat }) {
     const [currentUserName, setCurrentUserName] = useState(undefined);
     const [currentUserImage, setCurrentUserImage] = useState(undefined);
     const [currentSelected, setCurrentSelected] = useState(undefined);
@@ -15,6 +15,7 @@ function Contacts({ contacts, currentUser }) {
     
     const changeCurrentUser = (index, contact) => {
 setCurrentSelected(index)
+changeChat(contact)
     };
 
     return (
@@ -40,21 +41,7 @@ setCurrentSelected(index)
                                 </div>
                             </div>
                         ))}
-                         {contacts.map((contact,index) => (
-                            <div
-                                className={`contact ${index === currentSelected ? 'selected' : ''}`}
-                                key={index}
-                                onClick={() => changeCurrentUser(index, contact)}
-                            >
-                                <div className='avatar'>
-                                    <img src={`data:image/svg+xml;base64,${contact.avatarImage}`} alt='avatar' />
-                                </div>
-                                <div className='username'>
-                                  {console.contact}
-                                    <h3>{contact.username}</h3>
-                                </div>
-                            </div>
-                        ))}
+                      
                     </div>
                     <div className='current-user'>
                         <div className='avatar'>
