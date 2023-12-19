@@ -1,4 +1,3 @@
-const { json } = require('stream/consumers');
 const User = require('../model/userModel');
 const bcrypt = require('bcrypt')
 
@@ -29,7 +28,7 @@ module.exports.register = async (req, res, next) => {
 
 module.exports.login = async (req, res, next) => {
     try {
-        console.log(req.body)
+        // console.log(req.body)
         const { username, password } = req.body;
         const userCheck = await User.findOne({ username })
         if (!userCheck) {

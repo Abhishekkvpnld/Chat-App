@@ -1,20 +1,32 @@
 import React,{useState} from 'react'
 import styled from 'styled-components'
-import Picker from 'emoji-picker-react'
+import EmojiPicker from 'emoji-picker-react';
 import {IoMdSend} from 'react-icons/io'
 import {BsEmojiSmileFill} from 'react-icons/bs'
 
-function ChatInput() { 
+function ChatInput({handleSendMsg}) { 
     const [showEmojiPicker,setShowEmojiPicker] = useState(false)
     const [msg,setMsg] = useState('')
+
+
 const handleEmojiPickerHideShow = ()=>{
     setShowEmojiPicker(!showEmojiPicker)
 }
 
-const handleEmojiClick = (event,emoji)=>{
-    let message = msg;
-    message += emoji.emoji;
-    setMsg(message)
+const handleEmojiClick = (event, emoji) => {
+  console.log('emoji', emoji);
+  let message = msg;
+  message += emoji.emoji;
+  setMsg(message);
+};
+
+
+const sendMsg = (e)=>{
+  e.preventDefault()
+if(msg.length>0){
+handleSendMsg(msg)
+setMsg('')
+}
 }
 
   return (
@@ -23,11 +35,11 @@ const handleEmojiClick = (event,emoji)=>{
             <div className="emoji" >
                 <BsEmojiSmileFill onClick={handleEmojiPickerHideShow}/>
                 {
-                    showEmojiPicker && <Picker onEmojiClick={handleEmojiClick}/>
+                    showEmojiPicker && <EmojiPicker  onEmojiClick={handleEmojiClick}/>
                 }
             </div>
         </div>
-        <form  className="input-container">
+        <form  className="input-container" onSubmit={(e)=>sendMsg(e)}>
             <input type="text" placeholder='type your message here' value={msg} onChange={(e)=>setMsg(e.target.value)} />
             <button className='submit'>
                 <IoMdSend/>
@@ -54,12 +66,15 @@ const Container = styled.div`
       position: relative;
       svg {
         font-size: 1.5rem;
-        color: #ffff00c8;
+        color: yellow;
         cursor: pointer;
       }
       .emoji-picker-react {
         position: absolute;
-        top:-350px;
+        margin-bottom:400px;
+        width: 300px; 
+        height: 300px;
+        background-color:black;
       }
     }
   }
@@ -69,18 +84,19 @@ const Container = styled.div`
     border-radius: 2rem;
     display: flex;
     align-content: center;
-    gap: 2rem;
-    background-color: #ffffff34;
+    gap:2rem;
+    background-color: transparent;
 
     input {
-      width: 90%;
+      width: 100%;
       height: 60%;
-      background-color: transparent;
-      color: white;
+      background-color:white;
+      color:black;
       border: none;
-      padding-left: 1rem;
-      font-size: 1.2rem;
-
+      caret-color:blue;
+      border-radius:2rem;
+      padding-left:2rem;
+      font-size: 2rem;
       &::selection {
         background-color: #9186f3;
       }
@@ -91,16 +107,17 @@ const Container = styled.div`
     }
 
     button {
-      padding: 0.3rem 2rem;
+      padding: 0.1rem 1rem;
       border-radius: 2rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: violet;
+      background-color: yellowgreen;
       border: none;
+      cursor:pointer;
 
       svg {
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: white;
       }
     }

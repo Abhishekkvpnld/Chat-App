@@ -3,12 +3,20 @@ import styled from 'styled-components'
 import LogOut from './LogOut'
 import ChatInput from './ChatInput'
 import Messages from './Messages'
+import axios from 'axios'
+import { sendMessageRoute } from '../utils/APIRoutes'
 
-function ChatContainer({currentChat}) {
+function ChatContainer({currentChat,currentUser}) {
 
-const handleSendMsg = async (msg)=>{
-
-}
+    const handleSendMsg = async (msg) => {
+        alert(msg);  // Display an alert with the message content
+        await axios.post(sendMessageRoute, {
+            from: currentUser._id,
+            to: currentChat._id,
+            message: msg,
+        });
+    };
+    
 
   return (
       <>
@@ -22,7 +30,6 @@ const handleSendMsg = async (msg)=>{
         <div className='username'>
             <h3>{currentChat.username}</h3>
         </div>
-  
     </div>
     <LogOut/>
 </div>

@@ -74,7 +74,7 @@ const Container = styled.div`
     }
 
     h3 {
-      color: white;
+      color: red;
       text-transform: uppercase;
     }
   }
@@ -118,6 +118,7 @@ const Container = styled.div`
       .username {
         h3 {
           color: white;
+          overflow: hidden;
         }
       }
 
@@ -133,15 +134,18 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     gap: 2rem;
-
     .avatar {
       img {
-        height: 4rem;
+        height: 2rem;
         max-inline-size: 100%;
       }
     }
 
     .username {
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      width:0.5rem;
       h2 {
         color: white;
       }
