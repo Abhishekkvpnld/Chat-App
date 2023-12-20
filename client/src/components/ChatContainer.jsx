@@ -1,23 +1,27 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useRef,useState} from 'react'
 import styled from 'styled-components'
 import LogOut from './LogOut'
 import ChatInput from './ChatInput'
 import axios from 'axios'
+import {v4 as uuidv4} from 'uuid'
 import { getAllMessageRoute, sendMessageRoute } from '../utils/APIRoutes'
 
-function ChatContainer({currentChat,currentUser}) {
-
+function ChatContainer({currentChat,currentUser,socket}) {
+   
+    const scrollRef = useRef()
     const [messages,setMessages] = useState([ ])
+    const [arrivalMessage,setArrivalMessage] = useState(null)
 
     useEffect(() => {
         const fetchMessages = async () => {
             try {
+              if(currentChat){
                 const response = await axios.post(getAllMessageRoute, {
-                    from: currentUser._id,
-                    to: currentChat._id,
-                });
-                    setMessages(response.data);
-               
+                  from: currentUser._id,
+                  to: currentChat._id,
+              });
+                  setMessages(response.data);
+              }   
             } catch (error) {
                 console.error("Error fetching messages:", error);
             }
@@ -32,8 +36,38 @@ function ChatContainer({currentChat,currentUser}) {
             to: currentChat._id,
             message: msg,
         });
+
+        socket.current.emit("send-msg",{
+          to:currentChat._id,
+          from:currentUser._id,
+            message:msg
+        })
+
+        const msgs = [...messages]
+        msgs.push({fromSelf:true,message:msg})
+        setMessages(msgs)
     };
     
+    useEffect(()=>{
+if(socket.current){
+    socket.current.on("msg-recieve",(msg)=>{
+      setArrivalMessage({fromSelf:false,message:msg})
+    })
+}
+    },[socket])
+
+useEffect(()=>{
+arrivalMessage && setMessages((pre)=>[...pre,arrivalMessage])
+},[arrivalMessage])
+
+useEffect(() => {
+  const container = scrollRef.current;
+  if (container) {
+    container.scrollTop = container.scrollHeight;
+  }
+}, [messages]);
+
+
 
     return (
         <>
@@ -50,10 +84,10 @@ function ChatContainer({currentChat,currentUser}) {
                 </div>
                 <LogOut/>
               </div>
-              <div className="chat-messages">
+              <div className="chat-messages">a
                 {
-                  messages.map((message, index) => (
-                    <div key={index}>
+                  messages.map((message) => (
+                    <div ref={scrollRef} key={uuidv4()}>
                       <div className={`message ${message.fromSelf ? "sended" : "received"}`}>
                         <div className="content">
                           <p>{message.message}</p>
@@ -110,6 +144,14 @@ const Container = styled.div`
     flex-direction: column;
     gap: 1rem;
     overflow: auto;
+    &::-webkit-scrollbar {
+      width:0.2rem;
+      &-thumb {
+        background-color:#ffffff39;
+        width:0.1rem;
+        border-radius:1rem;
+      }
+    }
 
     .message {
       display: flex;

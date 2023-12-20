@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import Logo from "../assets/Logo.jpg"
 
 function Contacts({ contacts, currentUser,changeChat }) {
     const [currentUserName, setCurrentUserName] = useState(undefined);
@@ -23,7 +24,7 @@ changeChat(contact)
             {currentUserImage && currentUserName && (
                 <Container>
                     <div className='brand'>
-                        <img src="" alt="" />
+                        <img src={Logo} alt="" />
                         <h3>CHATme</h3>
                     </div>
                     <div className='contacts'>
