@@ -45,8 +45,14 @@ navigate('/')
     if(data.status === false){
       toast.error(data.msg,toastOptions)
     }else if(data.status === true){
-      localStorage.setItem('chat-app-user',JSON.stringify(data.user));
-      navigate('/')
+     const setLocalStorageData = await localStorage.setItem('chat-app-user',JSON.stringify(data.userCheck));
+      if(setLocalStorageData === undefined){
+        alert('no data')
+        localStorage.clear()
+navigate('/login')
+       }else{
+         navigate('/')
+       }
     }
    }
   };

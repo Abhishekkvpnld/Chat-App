@@ -40,7 +40,7 @@ setMsg('')
             </div>
         </div>
         <form  className="input-container" onSubmit={(e)=>sendMsg(e)}>
-            <input type="text" placeholder='type your message here' value={msg} onChange={(e)=>setMsg(e.target.value)} />
+            <input type="text" placeholder='type your message here...' value={msg} onChange={(e)=>setMsg(e.target.value)} />
             <button className='submit'>
                 <IoMdSend/>
             </button>
@@ -68,10 +68,11 @@ const Container = styled.div`
         font-size: 1.5rem;
         color: yellow;
         cursor: pointer;
+       
       }
       .emoji-picker-react {
         position: absolute;
-        margin-bottom:400px;
+        margin-bottom:-400px;
         width: 300px; 
         height: 300px;
         background-color:black;
@@ -89,14 +90,14 @@ const Container = styled.div`
 
     input {
       width: 100%;
-      height: 60%;
+      // height: 60%;
       background-color:white;
       color:black;
       border: none;
       caret-color:blue;
       border-radius:2rem;
       padding-left:2rem;
-      font-size: 2rem;
+      font-size: 1rem;
       &::selection {
         background-color: #9186f3;
       }

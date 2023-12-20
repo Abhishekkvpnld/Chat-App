@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 
 module.exports.register = async (req, res, next) => {
     try {
-        console.log(req.body)
+        // console.log(req.body)
         const { username, email, password } = req.body;
         const usernameCheck = await User.findOne({ username })
         if (usernameCheck) {
@@ -69,7 +69,6 @@ module.exports.getAllUser = async (req, res, next) => {
     try {
         const users = await User.find({ _id: { $ne: req.params.id} })
             .select(["email", "username", "avatarImage", "_id"]);
-console.log(users)
         return res.json(users);
     } catch (ex) {
         next(ex)
