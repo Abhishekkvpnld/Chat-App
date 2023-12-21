@@ -1,0 +1,22 @@
+
+.chat-container {
+    /* display: flex;
+    flex-direction: column; */
+    gap: 0.4rem;
+    background-color:#eaeaf0;
+    padding: 2px;
+    /* border-radius: 10px; */
+    
+  }
+  
+  .chat-section {
+    height:630px;
+    width:100%;
+    background-image: url('../../assets/whatsapp-chat-letters-and-symbols-frohqsll7jrmil09.jpg');
+    display: grid;
+    grid-template-columns: 20% 80%;
+  
+    @media screen and (min-width: 720px) and (max-width: 1080px) {
+      grid-template-columns: 35% 65%;
+    }
+  }

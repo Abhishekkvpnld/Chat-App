@@ -1,0 +1,116 @@
+
+.chat-container {
+  display: grid;
+  grid-template-rows: 15% 75% 15%;
+  overflow: hidden;
+  background-color: #f6f4fc;
+  max-height:fit-content 100%;
+  border-right: #080420 1px solid;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  overflow: hidden;
+  border-bottom: #2506d5 2px solid;
+  border-radius: 5px;
+  background-color: #dbdbea;
+  }
+
+.brand img {
+  height: 2rem;
+}
+
+.brand h3 {
+  color: rgb(255, 0, 0);
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    gap: 0.7rem;
+    max-height:500px;
+  
+    &::-webkit-scrollbar {
+      width: 5px;
+      cursor: pointer;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background-color:transparent;
+      /* width: 0.3rem; */
+      border-radius: 1rem;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+  }
+  
+
+.contact {
+  background-color:rgb(250, 247, 247);
+  min-height: 5rem;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 1rem;
+  padding: 0.4rem;
+  gap: 0.5rem;
+  align-items: center;
+  display: flex;
+  transition: 0.5s ease-in-out;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.contact .avatar img {
+  height: 3rem;
+}
+
+.contact .username h3 {
+  color: rgb(20, 2, 2);
+}
+
+.contact.selected {
+  background-color: rgb(210, 226, 216);
+}
+
+.current-user {
+  background-color: #dbdbea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  position:relative;
+  width: 100%;
+  height: 50px;
+}
+
+.current-user .avatar img {
+  height: 3rem;
+  max-inline-size: 100%;
+}
+
+.current-user .username {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.current-user .username h2 {
+  color: rgb(24, 4, 4);
+}
+
+@media screen and (min-width: 720px) and (max-width: 1080px) {
+
+  .container .current-user {
+    gap: 0.5rem;
+    .username {
+      font-size: 1rem;
+    }
+  }
+}

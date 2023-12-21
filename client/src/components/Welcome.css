@@ -1,0 +1,18 @@
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(251, 247, 247);
+    width: 100%;
+
+  }
+  
+  .welcome-container img {
+    height: 30rem;
+    
+  }
+  
+  .welcome-container span {
+    color: rgb(22, 198, 211);
+  }

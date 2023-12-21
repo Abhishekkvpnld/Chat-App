@@ -1,0 +1,19 @@
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #e21e3b;
+    border: none;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 11);
+  }
+  
+  .button svg {
+    font-size: 1.5rem;
+    color: #ebe7ff;
+    
+  }
+  

@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { setAvatarRoute } from '../../utils/APIRoutes';
 import { Buffer } from 'buffer';
+// import './setAvatar.css';
 
 function SetAvatar() {
   const navigate = useNavigate()
