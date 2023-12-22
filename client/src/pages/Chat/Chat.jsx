@@ -10,6 +10,7 @@ import {io} from 'socket.io-client';
 import './Chat.css'
 
 function Chat() {
+  
   const navigate = useNavigate();
   const socket = useRef()
 

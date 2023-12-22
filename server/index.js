@@ -33,18 +33,19 @@ const io = socket(server,{
     }
 })
 
-global.onlineUsers = new Map()
+global.onlineUsers = new Map();
 
-io.on("conection",(socket)=>{
+io.on("connection", (socket) => {
     global.chatSocket = socket;
-    socket.on("add-user",(userId)=>{
-        onlineUsers.set(userId,socket.id)
-    })
 
-    socket.on("send-msg",(data)=>{
-        const sendUserSocket = onlineUsers.get(data.to);
-        if(sendUserSocket){
-            socket.to(sendUserSocket).emit("msg-recieve",data.message)
+    socket.on("add-user", (userId) => {
+        global.onlineUsers.set(userId, socket.id);
+    });
+
+    socket.on("send-msg", (data) => {
+        const sendUserSocket = global.onlineUsers.get(data.to);
+        if (sendUserSocket) {
+            socket.to(sendUserSocket).emit("msg-recieve", data.message);
         }
-    })
-})
+    });
+});

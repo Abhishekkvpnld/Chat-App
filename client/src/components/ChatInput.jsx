@@ -14,10 +14,11 @@ const handleEmojiPickerHideShow = ()=>{
     setShowEmojiPicker(!showEmojiPicker)
 }
 
-const handleEmojiClick = (event, emoji) => {
-  console.log('emoji', emoji);
-  let message = msg;
-  message += emoji.emoji;
+const handleEmojiClick = (event, emojiObject) => {
+  console.log('emoji', emojiObject);
+  let message = msg || '';
+  message += emojiObject.emoji;
+  console.log('messages:' +message)
   setMsg(message);
 };
 
