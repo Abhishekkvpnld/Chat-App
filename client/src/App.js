@@ -7,7 +7,7 @@ import SetAvatar from './pages/Avatar/setAvatar';
 
 function App() {
   return (
-    <BrowserRouter basename='/chatme'>
+    <BrowserRouter >
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

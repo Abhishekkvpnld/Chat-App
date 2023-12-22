@@ -4,7 +4,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
 import axios from 'axios';
-import icon from '../../assets/logo.svg';
+import icon from '../../assets/messages.png';
 import { loginRoute } from '../../utils/APIRoutes';
 
 function Login() {
@@ -45,14 +45,18 @@ navigate('/')
     if(data.status === false){
       toast.error(data.msg,toastOptions)
     }else if(data.status === true){
-     const setLocalStorageData = await localStorage.setItem('chat-app-user',JSON.stringify(data.userCheck));
-      if(setLocalStorageData === undefined){
-        alert('no data')
-        localStorage.clear()
-navigate('/login')
-       }else{
-         navigate('/')
-       }
+ localStorage.setItem('chat-app-user',JSON.stringify(data.userCheck));
+      navigate('/')
+    
+    //  if(setLocalStorageData === undefined){
+    //   toast.error('Error,try again',toastOptions)
+    //  }
+//       if(setLocalStorageData === undefined){
+// //         localStorage.clear()
+// // navigate('/login')
+//        }else{
+//          navigate('/')
+//        }
     }
    }
   };
@@ -97,7 +101,7 @@ navigate('/login')
             onChange={(e) => handleChange(e)}
           />
 
-          <button type='submit'>Create Account</button>
+          <button type='submit'>Login</button>
           <span>
             Dont't have an account? <Link to={'/register'}>Register</Link>
           </span>
@@ -123,7 +127,7 @@ const FormContainer = styled.div`
     align-items: center;
     gap: 1rem;
     justify-content: center;
-
+background-color:white;
     img {
       height: 5rem;
       background-color: white;
