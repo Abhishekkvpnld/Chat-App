@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "build":"npm i"
+    "install":"npm install",
+    "build": "npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongoose": "^8.0.3",
+    "morgan": "^1.10.0",
     "nodemon": "^3.0.2",
     "react-icons": "^4.12.0",
     "socket.io": "^4.7.2"

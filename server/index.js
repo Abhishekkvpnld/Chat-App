@@ -4,11 +4,13 @@ const mongoose = require("mongoose");
 const userRoutes = require('./routes/userRoutes')
 const MessageRoute = require('./routes/messageRoute')
 const socket = require('socket.io')
+const logger = require('morgan');
 
 const app = express();
 require("dotenv").config()
 app.use(cors())
 app.use(express.json())
+app.use(logger('dev'))
 
 app.use('/api/auth',userRoutes);
 app.use('/api/messages',MessageRoute)
