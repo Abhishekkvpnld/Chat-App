@@ -5,12 +5,13 @@
     gap: 0.4rem;
     background-color:#eaeaf0;
     padding: 2px;
+    height: 100%;
     /* border-radius: 10px; */
     
   }
   
   .chat-section {
-    height:630px;
+    height:785px;
     width:100%;
     background-image: url('../../assets/whatsapp-chat-letters-and-symbols-frohqsll7jrmil09.jpg');
     display: grid;
