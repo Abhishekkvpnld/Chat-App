@@ -3,8 +3,24 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Logo from "../assets/messages.png";
 import './Contacts.css';
+import { BiPowerOff } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom'
+import "./LogOut.css"
 
 function Contacts({ contacts, currentUser, changeChat }) {
+
+  const navigate = useNavigate();
+  const handleClick = async () => {
+    const shouldLogout = window.confirm('Are you sure you want to log out?');
+
+    if (shouldLogout) {
+      localStorage.clear();
+      navigate('/login')
+      console.log('Logging out...');
+    }
+  }
+  
+
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
@@ -53,7 +69,7 @@ function Contacts({ contacts, currentUser, changeChat }) {
               <img src={`data:image/svg+xml;base64,${currentUserImage}`} alt='avatar' />
             </div>
             <div className='username'>
-              <h2>{currentUserName}</h2>
+              <h2>{currentUserName}</h2><BiPowerOff style={{fontSize:"30px",margin:"10px",color:"green",cursor: "pointer"}} className='powerBtn'  onClick={handleClick} />
             </div>
           </div>
         </Container>

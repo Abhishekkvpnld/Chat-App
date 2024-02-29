@@ -114,3 +114,7 @@
     }
   }
 }
+
+.powerBtn:hover{
+  color: red;
+}
