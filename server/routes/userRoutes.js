@@ -6,4 +6,4 @@ router.post('/login',login)
 router.post('/setAvatar/:id',setAvatar)
 router.get('/allUser/:id',getAllUser)
 
-module.exports =router; 
+module.exports =router;  

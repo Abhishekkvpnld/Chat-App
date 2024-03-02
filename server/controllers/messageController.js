@@ -3,11 +3,13 @@ const messageModel = require("../model/messageModel");
 module.exports.addMessage = async(req,res,next)=>{
     try{
         console.log(req.body)
-const {from,to,message} = req.body;
+const {from,to,message,file} = req.body;
 const data = await messageModel.create({
     message:{
-        text:message
+        text:message,
+        file:file
     },
+    
     users:[from,to],
     sender:from,
 })

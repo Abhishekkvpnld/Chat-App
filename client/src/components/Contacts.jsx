@@ -69,7 +69,7 @@ function Contacts({ contacts, currentUser, changeChat }) {
               <img src={`data:image/svg+xml;base64,${currentUserImage}`} alt='avatar' />
             </div>
             <div className='username'>
-              <h2>{currentUserName}</h2><BiPowerOff style={{fontSize:"30px",margin:"10px",color:"green",cursor: "pointer"}} className='powerBtn'  onClick={handleClick} />
+              <h2>{currentUserName}</h2><BiPowerOff style={{fontSize:"30px",margin:"10px",color:"green",cursor: "pointer"}} className="power-off-icon"  onClick={handleClick} />
             </div>
           </div>
         </Container>

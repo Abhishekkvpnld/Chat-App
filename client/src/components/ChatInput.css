@@ -22,9 +22,10 @@
             position: relative;
 
             svg {
-                font-size: 1.5rem;
+                font-size: 1.9rem;
                 color: rgb(16, 100, 227);
                 cursor: pointer;
+                margin-bottom: 20px;
 
             }
 
@@ -36,6 +37,8 @@
                 background-color: rgb(252, 247, 247);
             }
         }
+
+
     }
 
     .input-container {
@@ -47,6 +50,7 @@
         background-color: transparent;
         margin-bottom: 10px;
        
+        
 
         input {
             width: 100%;
@@ -71,14 +75,15 @@
         }
 
         button {
-            padding: 0.1rem 1.5rem;
-            border-radius: 2rem;
-            display: flex;
+            padding: 0.1rem 1.4rem;
+            border-radius: 1.1rem;
+            /* display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: center; */
             background-color: rgb(28, 220, 73);
-            border: none;
+            border: 0.5px solid;
             cursor: pointer;
+            width: 100px;
 
             @media screen and (min-width:720px) and (max-width:1080px) {
                 padding: 0.3rem 1rem;
@@ -94,3 +99,4 @@
         }
     }
 }
+

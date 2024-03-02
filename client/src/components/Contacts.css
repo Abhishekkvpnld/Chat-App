@@ -24,7 +24,8 @@
 }
 
 .brand h3 {
-  color: rgb(255, 0, 0);
+  color: rgb(11, 11, 11);
+  -webkit-text-stroke: 0.1px rgb(249, 247, 247);
 }
 
 .contacts {
@@ -115,6 +116,6 @@
   }
 }
 
-.powerBtn:hover{
+.power-off-icon:hover {
   color: red;
 }

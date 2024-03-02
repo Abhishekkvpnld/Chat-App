@@ -34,12 +34,14 @@ function Chat() {
     fetchData();
   }, [navigate]);
 
+
   useEffect(()=>{
 if(currentUser){
   socket.current = io(host);
   socket.current.emit("add-user",currentUser._id)
 }
   },[currentUser])
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,6 +58,7 @@ if(currentUser){
     fetchData();
   }, [currentUser,navigate]);
 
+  
 const handleChatChange = (chat)=>{
 setCurrentChat(chat)
 }

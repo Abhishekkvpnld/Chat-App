@@ -6,6 +6,7 @@ import axios from 'axios'
 import {v4 as uuidv4} from 'uuid'
 import './ChatContainer.css'
 import { getAllMessageRoute, sendMessageRoute } from '../utils/APIRoutes'
+// import ChatImage from './ChatImage'
 
 function ChatContainer({currentChat,currentUser,socket}) {
    
@@ -31,11 +32,12 @@ function ChatContainer({currentChat,currentUser,socket}) {
     }, [currentUser,currentChat]);
     
 
-    const handleSendMsg = async (msg) => {
+    const handleSendMsg = async (msg,file) => {
         await axios.post(sendMessageRoute, {
             from: currentUser._id,
             to: currentChat._id,
             message: msg,
+            file:file,
         });
 
         socket.current.emit("send-msg",{
@@ -86,6 +88,7 @@ useEffect(() => {
                 <div><LogOut/></div>
               </div>
               <div className="chat-messages">
+                {/* <ChatImage/> */}
                 {
                   messages.map((message) => (
                     <div ref={scrollRef} key={uuidv4()}>
