@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 app.use('/api/auth',userRoutes);
 app.use('/api/messages',MessageRoute) 
 
-mongoose.connect(process.env.MONGO_URL,{
+mongoose.connect(process.env.ATLAS_URL,{
     // useNewUrlParser:true, 
     // useUnifiedTopology:true,   
 }).then(()=>{
